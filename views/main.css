@@ -1,0 +1,139 @@
+#header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  height: 64px;
+  width: 64px;
+  text-align: center;
+}
+
+.title {
+  font-size: 16px;
+}
+
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+#drawer-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+#drawer-wrapper.hidden {
+  width: 0;
+  transition: width 0 0.3s;
+}
+
+.drawer {
+  transition: transform 0.3s;
+  height: 100%;
+  width: 80%;
+  min-width: 250px;
+  max-width: 300px;
+  background: #fff;
+}
+
+#drawer-wrapper.hidden .drawer {
+  transform: translateX(-100%);
+}
+
+#create-pin-btn {
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  display: inline-block;
+  border-radius: 28px;
+  text-align: center;
+  background-color: #f44336;
+  transition: 0.3s ease-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  right: 16px;
+  bottom: 16px;
+  z-index: 1;
+}
+
+#create-pin-btn i {
+  color: #fff;
+  line-height: 56px;
+}
+
+#map {
+  height: calc(100vh - 64px - 48px);
+  width: 100%;
+}
+
+.parking-list-wrapper {
+  height: 0;
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  transition: height 0.3s ease-in;
+}
+
+.parking-list-wrapper.visible {
+  height: 100%;
+  transition: height 0.3s ease-out;
+}
+
+.filter-wrapper {
+  height: 36px;
+  line-height: 36px;
+}
+
+#parking-list {
+  display: block;
+  height: calc(100vh - 36px - 48px);
+  overflow-y: auto;
+}
+
+.parking-record {
+  display: block;
+  min-height: 80px;
+  padding: 8px 16px;
+  box-shadow: 0px 1px 0px #e6e6e6;
+  margin-bottom: 1px;
+}
+
+.parking-record p {
+  margin: 0;
+}
+
+.parking-record .place {
+  color: #333;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: initial;
+}
+
+.parking-record .address,
+.parking-record .date {
+  color: #999;
+  padding-top: 3px;
+  font-size: 14px;
+}
+
+.bottom-bar {
+  width: 100%;
+  height: 48px;
+  background: #f5f5f5;
+  position: absolute;
+  bottom: 0;
+}
+
+.action-button {
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+  padding: 8px 0;
+  width: 88%;
+}
