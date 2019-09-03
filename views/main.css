@@ -97,6 +97,7 @@
 }
 
 .parking-record {
+  position: relative;
   display: block;
   min-height: 80px;
   padding: 8px 16px;
@@ -120,6 +121,12 @@
   color: #999;
   padding-top: 3px;
   font-size: 14px;
+}
+
+.parking-record .delete-btn{
+  position: absolute;
+  right: 16px;
+  top: 8px;
 }
 
 .bottom-bar {
