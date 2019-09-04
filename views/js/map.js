@@ -1,6 +1,5 @@
-let map, infoWindow;
-async function initMap() {
-  infoWindow = new google.maps.InfoWindow();
+let map;
+(async function initMap() {
   const { latitude, longitude } = await getLocation();
   var myLatlng = new google.maps.LatLng(latitude, longitude);
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -14,26 +13,28 @@ async function initMap() {
   var marker = new google.maps.Marker({
     position: myLatlng,
     map: map,
-    title: '현재 위치'
+    title: '현재 위치',
+    draggable: true,
   });
   var infowindow = new google.maps.InfoWindow({
-    content: '<span>any html goes here</span>'
+    content: '<span>현재 위치</span>'
   });
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.open(map, marker);
+    console.log(marker.getPosition().lat())
+    console.log(marker.getPosition().lng())
   });
 
   map.setCenter(pos);
-  btn.addEventListener('click', () => {
-    var myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      draggable: true,
-      title: 'Drag me!'
-    });
-  });
-}
+  app.view.$createPinBtn.addEventListener('click', () => {
+    const { lat, lng } = marker.getPosition();
+    const position = {
+      latitude: lat(),
+      longitude: lng()
+    };
+    console.log(position);
+  })
+})();
 
 function getLocation() {
   return new Promise((resolve, reject) => {
