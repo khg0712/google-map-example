@@ -98,25 +98,29 @@
 
 .parking-record {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   min-height: 80px;
   padding: 8px 16px;
   box-shadow: 0px 1px 0px #e6e6e6;
   margin-bottom: 1px;
 }
 
+.parking-record .index {
+  margin-right: 16px;
+}
+
 .parking-record p {
   margin: 0;
 }
 
-.parking-record .place {
+.parking-record .address {
   color: #333;
   font-size: 16px;
   font-weight: normal;
   line-height: initial;
 }
 
-.parking-record .address,
 .parking-record .date {
   color: #999;
   padding-top: 3px;
