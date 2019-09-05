@@ -4,7 +4,6 @@ export interface Position {
 }
 
 export interface IParkingInfo {
-  place: string;
   address: string;
   position: Position;
 }

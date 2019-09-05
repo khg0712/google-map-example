@@ -1,6 +1,6 @@
 import { Document, Model, Schema, model } from 'mongoose';
 import moment from 'moment';
-import { Position, IParkingInfo } from '../types';
+import { IParkingInfo } from '../types';
 
 export interface ParkingInfoDocument extends Document, IParkingInfo {
   date: string;
@@ -18,7 +18,6 @@ const ParkingInfoSchema = new Schema<IParkingInfo>({
     type: String,
     default: () => moment().format('YYYY-MM-DD HH:mm:ss')
   },
-  place: String,
   address: String,
   position: {
     latitude: Number,

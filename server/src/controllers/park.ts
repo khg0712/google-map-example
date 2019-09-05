@@ -39,8 +39,7 @@ export const getParkInfo: RequestHandler = async (
 ): Promise<void> => {
   try {
     const result = await ParkingInfo.getAllParkingInfo();
-    const newResult = result.map(({ place, address, position, date, _id }) => ({
-      place,
+    const newResult = result.map(({ address, position, date, _id }) => ({
       address,
       position,
       date,
