@@ -1,7 +1,6 @@
 (function(exports){
   'use strict';
   function View(template){
-    console.log('view created!');
     this.template = template;
 
     this.$parkingListWrapper = document.getElementsByClassName('parking-list-wrapper')[0];
@@ -12,6 +11,7 @@
     this.$drawerWrapper = document.getElementById('drawer-wrapper');
     this.$drawer = document.getElementsByClassName('drawer')[0];
     this.$parkingRecords = document.querySelectorAll('.parking-record');
+    this.$map = document.getElementById('map');
 
     this.init();
   }
@@ -29,7 +29,7 @@
     });
     this.$actionBtn.addEventListener('click', () => {
       this.$parkingListWrapper.classList.toggle('visible');
-    })
+    });
   }
 
   View.prototype.bind = function(event, handler) {
@@ -39,14 +39,27 @@
         console.log('view bind new parking item');
         self.$createPinBtn.addEventListener('click', () => {
           console.log('create-btn-clicked');
-          handler({
-            place: '장소',
-            address: '주소',
-            date: '날짜',
-            position: {
-              lat: '',
-              lang: ''
-            }
+          handler();
+        });
+        break;
+      case 'delete-item':
+        console.log('view bind delete item');
+        const deleteFuncs = handler();
+        document.querySelectorAll('.parking-record .delete-btn').forEach((el, i, parent) => {
+          el.addEventListener('click', event => {
+            deleteFuncs[parent.length-i-1]();
+            event.stopPropagation();
+          })
+        });
+        break;
+      case 'get-position':
+        console.log('view bind get position');
+        const getPositionFuncs = handler();
+        document.querySelectorAll('.parking-record').forEach((el, i, parent) => {
+          el.addEventListener('click', event => {
+            const position = getPositionFuncs[parent.length-i-1]();
+            console.log(position);
+            this.$parkingListWrapper.classList.remove('visible');
           });
         });
         break;
@@ -67,12 +80,6 @@
 
   View.prototype.refreshItems = function(data){
     this.$parkingList.innerHTML = this.template.insert(data);
-    this.$parkingRecords.forEach(parkingRecord => {
-      console.log(1)
-      parkingRecord.addEventListener('click', () => {
-        console.log('item clicked');
-      })
-    });
   };
 
   exports.app = exports.app || {};
