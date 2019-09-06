@@ -1,7 +1,6 @@
 (function(exports){
   'use strict';
-  function Model(storage){
-    this.storage = storage;
+  function Model(){
   }
 
   Model.prototype.create = function(data){
@@ -14,10 +13,6 @@
       },
       body: JSON.stringify(data),
     })
-  };
-
-  Model.prototype.read = function(callback){
-    return this.storage.findAll(callback);
   };
 
   Model.prototype.fetch = function() {
